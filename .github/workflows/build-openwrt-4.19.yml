@@ -112,6 +112,7 @@ jobs:
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
     - name: Check space usage
+      id: cp-config
       run: |
         [ ! -e openwrt/bin/targets/ipq40xx/p2w_r619ac/config.txt ] && mkdir -p openwrt/bin/targets/ipq40xx/p2w_r619ac/config.txt
         df -hT & cp -f openwrt/.config openwrt/bin/targets/ipq40xx/p2w_r619ac/config.txt
