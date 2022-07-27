@@ -28,6 +28,8 @@ env:
   CONFIG_FILE: 419.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2-4.19.sh
+  PACKAGE_REPO: 52ff69cdbae152ed1e41dd2f734583c9bad93597
+  LUCI_REPO: 83494a9a0bb26cadd339bb73389c486242788bad
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -75,6 +77,11 @@ jobs:
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
+
+    - name: recycle repo
+      run: |
+        [ -n PACKAGE_REPO ] && cd openwrt/feeds/packages && git fetch --unshallow && git reset --hard $PACKAGE_REPO && cd ..
+        [ -n LUCI_REPO ] && cd luci && git fetch --unshallow && git reset --hard $LUCI_REPO && cd ..
 
     - name: Load custom configuration
       run: |
