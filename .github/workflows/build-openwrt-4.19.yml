@@ -121,8 +121,8 @@ jobs:
     - name: Check space usage
       id: cp-config
       run: |
-        [ ! -e openwrt/bin/targets/ipq40xx/p2w_r619ac/config.txt ] && mkdir -p openwrt/bin/targets/ipq40xx/p2w_r619ac/config.txt
-        df -hT & cp -f openwrt/.config openwrt/bin/targets/ipq40xx/p2w_r619ac/config.txt
+        [ ! -e openwrt/bin/targets/ipq40xx/generic ] && mkdir -p openwrt/bin/targets/ipq40xx/generic
+        df -hT & cp -f openwrt/.config openwrt/bin/targets/ipq40xx/generic/config.txt
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
